@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <queue>
+
+using namespace std;
+
+int main() {
+  queue<string> Cola;
+
+  cout << "Inicializando la cola con los valores Mar, Sella y Centurion, y el campo frente con valor de 2." << endl;
+  Cola.push("Mar");
+  Cola.push("Sella");
+  Cola.push("Centurión");
+  cout << endl;
+
+  cout << "Añadiendo Gloria y Generosa a la cola." << endl;
+  Cola.push("Gloria");
+  Cola.push("Generosa");
+  cout << endl;
+
+  cout << "Eliminando de la cola." << endl;
+  if (!Cola.empty()) {
+    cout << "Eliminando " << Cola.front() << " de la cola." << endl;
+    Cola.pop();
+  }
+  cout << endl;
+
+  cout << "Añadiendo Positivo." << endl;
+  Cola.push("Positivo");
+  cout << endl;
+
+  cout << "Añadiendo Horche." << endl;
+  Cola.push("Horche");
+  cout << endl;
+
+  cout << "Eliminando todos los elementos de la cola." << endl;
+  while (!Cola.empty()) {
+    cout << "Eliminando " << Cola.front() << " de la cola." << endl;
+    Cola.pop();
+  }
+  cout << endl;
+
+  return 0;
+}
