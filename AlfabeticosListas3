@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Nodo {
+string valor;
+Nodo *siguiente;
+};
+
+class ListaCircularEnlazada {
+private:
+Nodo *cola;
+
+public:
+ListaCircularEnlazada() {
+cola = NULL;
+}
+
+void agregarNodo(string valor) {
+    Nodo *nuevoNodo = new Nodo;
+    nuevoNodo->valor = valor;
+
+    if (cola == NULL) { // si la lista esté vacía
+        nuevoNodo->siguiente = nuevoNodo;
+        cola = nuevoNodo;
+    }
+    else if (cola->valor <= valor) { // si el nuevo nodo es mayor al último
+        nuevoNodo->siguiente = cola->siguiente;
+        cola->siguiente = nuevoNodo;
+        cola = nuevoNodo;
+    }
+    else { // caso general
+        Nodo *actual = cola->siguiente;
+        Nodo *anterior = cola;
+
+        while (actual->valor < valor) {
+            anterior = actual;
+            actual = actual->siguiente;
+        }
+
+        anterior->siguiente = nuevoNodo;
+        nuevoNodo->siguiente = actual;
+    }
+}
+
+void imprimirLista() {
+    if (cola == NULL) {
+        cout << "La lista está vacía" << endl;
+    }
+    else {
+        Nodo *actual = cola->siguiente;
+
+        do {
+            cout << actual->valor << endl;
+            actual = actual->siguiente;
+        } while (actual != cola->siguiente);
+    }
+}
+
+};
+
+int main() {
+ListaCircularEnlazada lista;
+
+lista.agregarNodo("BUSCAR");
+lista.agregarNodo("DAR");
+lista.agregarNodo("EMBARCAR");
+lista.agregarNodo("FRIALDAD");
+lista.agregarNodo("GRACIAS");
+lista.agregarNodo("HONDURAS");
+lista.agregarNodo("AYUDA");
+lista.agregarNodo("COLLAR");
+
+cout<<"La lista de palabras correcta, de manera alfabetica es: "" \n";
+lista.imprimirLista();
+
+return 0;
+}
